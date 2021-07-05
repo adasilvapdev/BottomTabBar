@@ -6,6 +6,7 @@ import { PromotionsNavigation } from '../navigations/sections/promotions';
 import { ExploreNavigation } from '../navigations/sections/explore';
 import { FAQsNavigation } from '../navigations/sections/faqs';
 import { TaxiNavigation } from '../navigations/sections/taxi';
+import Tabs from '../navigations/Tabs';
 
 const Stack = createStackNavigator();
 
@@ -17,7 +18,8 @@ const RootNavigation: React.FC = () => {
 
                 <Stack.Screen
                     name="HomeNavigation"
-                    component={HomeNavigation}
+                    // component={HomeNavigation}
+                    component={Tabs}
                 />
                 <Stack.Screen
                     name="PromotionsNavigation"
