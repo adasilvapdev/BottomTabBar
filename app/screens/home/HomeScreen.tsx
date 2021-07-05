@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { HomeIcon, ProfileIcon, SearchIcon, TicketIcon } from '../../components/atoms/icons';
 
 const HomeScreen = () => {
     const navigation = useNavigation()
@@ -11,6 +12,11 @@ const HomeScreen = () => {
                 title="Sub Screen"
                 onPress={() => navigation.navigate('HomeSubScreen')}
             />
+
+            <HomeIcon />
+            <ProfileIcon />
+            <SearchIcon />
+            <TicketIcon />
         </View>
     )
 }
