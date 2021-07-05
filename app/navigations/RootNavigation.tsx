@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { HomeNavigation } from '../navigations/sections/home';
-import { PromotionsNavigation } from '../navigations/sections/promotions';
+// import { HomeNavigation } from '../navigations/sections/home';
+import { PromosNavigation } from '../navigations/sections/promos';
 import { ExploreNavigation } from '../navigations/sections/explore';
 import { FAQsNavigation } from '../navigations/sections/faqs';
 import { TaxiNavigation } from '../navigations/sections/taxi';
@@ -22,8 +22,8 @@ const RootNavigation: React.FC = () => {
                     component={Tabs}
                 />
                 <Stack.Screen
-                    name="PromotionsNavigation"
-                    component={PromotionsNavigation}
+                    name="PromosNavigation"
+                    component={PromosNavigation}
                 />
                 <Stack.Screen
                     name="ExploreNavigation"

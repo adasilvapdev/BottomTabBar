@@ -12,11 +12,6 @@ const HomeScreen = () => {
                 title="Sub Screen"
                 onPress={() => navigation.navigate('HomeSubScreen')}
             />
-
-            <HomeIcon />
-            <ProfileIcon />
-            <SearchIcon />
-            <TicketIcon />
         </View>
     )
 }

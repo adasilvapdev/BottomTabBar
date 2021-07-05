@@ -6,7 +6,7 @@ const PromotionsSubScreen = () => {
     const navigation = useNavigation()
     return (
         <View style={styles.container}>
-            <Text>Promotions Sub Screen</Text>
+            <Text>PromosScreen Sub Screen</Text>
             <Button
                 title="Sub Screen"
                 onPress={() => navigation.navigate('HomeSubScreen')}
