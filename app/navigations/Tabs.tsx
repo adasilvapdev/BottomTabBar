@@ -75,7 +75,7 @@ const Tabs = () => {
                 activeTintColor: THEME.COLORS.PRIMARY,
                 inactiveTintColor: THEME.COLORS.GRAY,
                 style: {
-                    // borderTopWidth: 0,
+                    borderTopWidth: 0,
                     backgroundColor: "transparent",
                     elevation: 0, //* Just fot Android,
 
