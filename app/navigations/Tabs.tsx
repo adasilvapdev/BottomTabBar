@@ -96,6 +96,8 @@ const TabBarCustomButton = (props: any) => {
     } else {    //* If is not selected, then return the normal bottom tab button
         return (
             <TouchableOpacity
+                // activeOpacity={1}
+                activeOpacity={0.85}
                 style={{
                     flex: 1,
                     height: 61,
@@ -106,7 +108,6 @@ const TabBarCustomButton = (props: any) => {
                     // borderColor: 'yellow',
                     paddingBottom: '1%'
                 }}
-                activeOpacity={1}
                 onPress={onPress}
             >
                 {children}
@@ -179,9 +180,8 @@ function MyTabBar({ state, descriptors, navigation }: any) {
 const Tabs = () => {
     return (
         <Tab.Navigator
-
             // tabBar={props => <MyTabBar {...props} />}
-
+            // lazy={false}
             tabBarOptions={{
                 showLabel: false,
                 style: {
@@ -189,10 +189,8 @@ const Tabs = () => {
                     backgroundColor: "transparent",
                     elevation: 0, //* Just fot Android,
 
-                    borderBottomEndRadius: 30,
-                    borderRadius: 30,
-
-
+                    // borderBottomEndRadius: 30,
+                    // borderRadius: 30,
                     position: 'absolute',
                     left: 20,
                     right: 20,
@@ -204,6 +202,14 @@ const Tabs = () => {
                 name="HomeScreen"
                 component={HomeScreen}
                 options={{
+                    // tabBarVisible: false,
+                    // tabBarBadge: 5,
+                    // tabBarBadgeStyle: {
+                    //     color: 'black',
+                    //     backgroundColor: 'aqua'
+                    // },
+                    unmountOnBlur: true,
+                    tabBarTestID: '0',
                     title: "Home",
                     tabBarIcon: ({ focused }) => (
                         <HomeIcon
@@ -215,13 +221,14 @@ const Tabs = () => {
                             {...props}
                         />
                     )
-                }
-                }
+                }}
             />
             <Tab.Screen
                 name="PromosScreen"
                 component={PromosScreen}
                 options={{
+                    unmountOnBlur: true,
+                    tabBarTestID: '1',
                     title: "Promos",
                     tabBarIcon: ({ focused }) => (
                         <TicketIcon
@@ -239,6 +246,8 @@ const Tabs = () => {
                 name="ExploreScreen"
                 component={ExploreScreen}
                 options={{
+                    unmountOnBlur: true,
+                    tabBarTestID: '2',
                     title: "Explorar",
                     tabBarIcon: ({ focused }) => (
                         <SearchIcon
@@ -256,6 +265,8 @@ const Tabs = () => {
                 name="FAQsScreen"
                 component={FAQsScreen}
                 options={{
+                    unmountOnBlur: true,
+                    tabBarTestID: '3',
                     title: "Ayuda",
                     tabBarIcon: ({ focused }) => (
                         <SearchIcon
@@ -273,6 +284,8 @@ const Tabs = () => {
                 name="TaxiScreen"
                 component={TaxiScreen}
                 options={{
+                    unmountOnBlur: true,
+                    tabBarTestID: '4',
                     title: "Taxi",
                     // tabBarLabel: 'Updates',
                     tabBarIcon: ({ focused }) => (
@@ -285,7 +298,6 @@ const Tabs = () => {
                             {...props}
                         />
                     ),
-
                 }}
             />
         </Tab.Navigator>
