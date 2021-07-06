@@ -13,7 +13,13 @@ import { THEME } from '../styles';
 import { COLORS } from '../styles/theme';
 const Tab = createBottomTabNavigator();
 
-const TabBarCustomButton = ({ accessibilityState, children, onPress }: any) => {
+// const TabBarCustomButton = ({ accessibilityState, children, onPress }: any) => {
+const TabBarCustomButton = (props: any) => {
+    const { accessibilityState, children, onPress, accessibilityLabel } = props
+    let title = accessibilityLabel.substring(0, accessibilityLabel.indexOf(","))
+    console.log('props: ', props)
+    console.log('\n--------------------')
+
     let isSelected = accessibilityState.selected
     if (isSelected) {   //* If button is selected, return the curvy floating button
         return (
@@ -21,17 +27,18 @@ const TabBarCustomButton = ({ accessibilityState, children, onPress }: any) => {
                 style={{
                     flex: 1,
                     alignItems: "center",
+                    // borderWidth: 1,
                 }}
             >
                 <View style={{
                     flexDirection: "row",
                     position: "absolute",
-                    top: 0
+                    top: 0,
+
+                    // borderWidth: 1,
+                    // borderColor: 'red'
                 }}>
-                    <View style={{
-                        flex: 1,
-                        backgroundColor: 'blue'
-                    }}></View>
+
                     <Svg
                         width={75}
                         height={61}
@@ -41,13 +48,9 @@ const TabBarCustomButton = ({ accessibilityState, children, onPress }: any) => {
                             d="M75.2 0v61H0V0c4.1 0 7.4 3.1 7.9 7.1C10 21.7 22.5 33 37.7 33c15.2 0 27.7-11.3 29.7-25.9.5-4 3.9-7.1 7.9-7.1h-.1z"
                             fill={THEME.COLORS.WHITE}
                             fillOpacity={0.9}
-
                         />
                     </Svg>
-                    <View style={{
-                        flex: 1,
-                        backgroundColor: 'red'
-                    }}></View>
+
                 </View>
 
 
@@ -62,7 +65,6 @@ const TabBarCustomButton = ({ accessibilityState, children, onPress }: any) => {
                         width: 50,
                         height: 50,
                         borderRadius: 25,
-
                         // backgroundColor: 'rgba(52, 52, 52, 0.8)',
                         // backgroundColor: THEME.COLORS.WHITE
                     }}
@@ -79,13 +81,17 @@ const TabBarCustomButton = ({ accessibilityState, children, onPress }: any) => {
                     //     backgroundColor: THEME.COLORS.WHITE
                     // }}
                     > */}
-                    {/* <Text style={styles.buttonText}>
-                            Sign in with Facebook
-                        </Text> */}
                     {children}
                     {/* </TouchableOpacity> */}
                 </LinearGradient>
-            </View >
+
+                <Text style={[
+                    styles.title, {
+                        position: "absolute",
+                        top: '55%',
+                        bottom: 0,
+                    }]}>{title}</Text>
+            </View>
         )
     } else {    //* If is not selected, then return the normal bottom tab button
         return (
@@ -95,12 +101,16 @@ const TabBarCustomButton = ({ accessibilityState, children, onPress }: any) => {
                     height: 61,
                     backgroundColor: COLORS.WHITE,
                     opacity: .9,
-                    borderWidth: 0
+                    // borderWidth: 0,
+                    // borderWidth: 1,
+                    // borderColor: 'yellow',
+                    paddingBottom: '1%'
                 }}
                 activeOpacity={1}
                 onPress={onPress}
             >
                 {children}
+                <Text style={styles.title}>{title}</Text>
             </TouchableOpacity>
         )
     }
@@ -264,6 +274,7 @@ const Tabs = () => {
                 component={TaxiScreen}
                 options={{
                     title: "Taxi",
+                    // tabBarLabel: 'Updates',
                     tabBarIcon: ({ focused }) => (
                         <ProfileIcon
                             color={focused ? THEME.COLORS.WHITE : THEME.COLORS.GRAY}
@@ -273,7 +284,8 @@ const Tabs = () => {
                         <TabBarCustomButton
                             {...props}
                         />
-                    )
+                    ),
+
                 }}
             />
         </Tab.Navigator>
@@ -297,4 +309,15 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         backgroundColor: 'transparent',
     },
+    title: {
+        justifyContent: "center",
+        // alignContent: "center",
+        // alignItems: "center",
+        // alignSelf: "center",
+        textAlign: "center",
+        // textAlignVertical: "center",
+        // textAlignVertical: "center",
+        fontSize: 10,
+        color: THEME.COLORS.GRAY
+    }
 })
