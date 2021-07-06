@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator, BottomTabBar } from '@react-navigation/bottom-tabs';
-import Svg, { Path } from 'react-native-svg'
+import Svg, { Path, } from 'react-native-svg';
+import LinearGradient from 'react-native-linear-gradient';
 import { HomeScreen } from '../screens/home';
 import { PromosScreen } from '../screens/promos';
 import { ExploreScreen } from '../screens/explore';
@@ -34,19 +35,38 @@ const TabBarCustomButton = ({ accessibilityState, children, onPress }: any) => {
                     <View style={{ flex: 1, backgroundColor: THEME.COLORS.WHITE }}></View>
                 </View>
 
-                <TouchableOpacity
+
+                <LinearGradient colors={['#020250', '#FF00CF']}
+                    // style={styles.linearGradient}
                     style={{
+                        // top: -22.5,
                         top: -22.5,
                         justifyContent: "center",
                         alignItems: "center",
                         width: 50,
                         height: 50,
                         borderRadius: 25,
-                        backgroundColor: THEME.COLORS.WHITE
+                        // backgroundColor: THEME.COLORS.WHITE
                     }}
                 >
+
+                    {/* <TouchableOpacity
+                    // style={{
+                    //     top: -22.5,
+                    //     justifyContent: "center",
+                    //     alignItems: "center",
+                    //     width: 50,
+                    //     height: 50,
+                    //     borderRadius: 25,
+                    //     backgroundColor: THEME.COLORS.WHITE
+                    // }}
+                    > */}
+                    {/* <Text style={styles.buttonText}>
+                            Sign in with Facebook
+                        </Text> */}
                     {children}
-                </TouchableOpacity>
+                    {/* </TouchableOpacity> */}
+                </LinearGradient>
             </View >
         )
     } else {    //* If is not selected, then return the normal bottom tab button
@@ -72,8 +92,6 @@ const Tabs = () => {
 
             tabBarOptions={{
                 showLabel: false,
-                activeTintColor: THEME.COLORS.PRIMARY,
-                inactiveTintColor: THEME.COLORS.GRAY,
                 style: {
                     borderTopWidth: 0,
                     backgroundColor: "transparent",
@@ -82,6 +100,7 @@ const Tabs = () => {
                     marginLeft: '5%',
                     marginRight: '5%',
                     marginBottom: '10%',
+                    borderBottomEndRadius: 30,
                     // borderBottomLeftRadius: 30,
                     // borderBottomRightRadius: 40,
                     // borderWidth: 1,
@@ -102,7 +121,7 @@ const Tabs = () => {
                     title: "Home",
                     tabBarIcon: ({ focused }) => (
                         <HomeIcon
-                            color={focused ? THEME.COLORS.PRIMARY : THEME.COLORS.GRAY}
+                            color={focused ? THEME.COLORS.WHITE : THEME.COLORS.GRAY}
                         />
                     ),
                     tabBarButton: (props) => (
@@ -120,7 +139,7 @@ const Tabs = () => {
                     title: "Promos",
                     tabBarIcon: ({ focused }) => (
                         <TicketIcon
-                            color={focused ? THEME.COLORS.PRIMARY : THEME.COLORS.GRAY}
+                            color={focused ? THEME.COLORS.WHITE : THEME.COLORS.GRAY}
                         />
                     ),
                     tabBarButton: (props) => (
@@ -137,7 +156,7 @@ const Tabs = () => {
                     title: "Explorar",
                     tabBarIcon: ({ focused }) => (
                         <SearchIcon
-                            color={focused ? THEME.COLORS.PRIMARY : THEME.COLORS.GRAY}
+                            color={focused ? THEME.COLORS.WHITE : THEME.COLORS.GRAY}
                         />
                     ),
                     tabBarButton: (props) => (
@@ -154,7 +173,7 @@ const Tabs = () => {
                     title: "Ayuda",
                     tabBarIcon: ({ focused }) => (
                         <SearchIcon
-                            color={focused ? THEME.COLORS.PRIMARY : THEME.COLORS.GRAY}
+                            color={focused ? THEME.COLORS.WHITE : THEME.COLORS.GRAY}
                         />
                     ),
                     tabBarButton: (props) => (
@@ -171,7 +190,7 @@ const Tabs = () => {
                     title: "Taxi",
                     tabBarIcon: ({ focused }) => (
                         <ProfileIcon
-                            color={focused ? THEME.COLORS.PRIMARY : THEME.COLORS.GRAY}
+                            color={focused ? THEME.COLORS.WHITE : THEME.COLORS.GRAY}
                         />
                     ),
                     tabBarButton: (props) => (
@@ -187,4 +206,19 @@ const Tabs = () => {
 
 export default Tabs
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    linearGradient: {
+        flex: 1,
+        paddingLeft: 15,
+        paddingRight: 15,
+        borderRadius: 5
+    },
+    buttonText: {
+        fontSize: 18,
+        fontFamily: 'Gill Sans',
+        textAlign: 'center',
+        margin: 10,
+        color: '#ffffff',
+        backgroundColor: 'transparent',
+    },
+})
