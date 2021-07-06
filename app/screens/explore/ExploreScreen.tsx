@@ -7,11 +7,22 @@ const ExploreScreen = () => {
 
     return (
         <View style={styles.container}>
-            <Text>Explore Screen</Text>
-            <Button
-                title="Sub Screen"
-                onPress={() => navigation.navigate('HomeSubScreen')}
-            />
+            <View style={{
+                flex: 2,
+                borderWidth: 1,
+                backgroundColor: 'darkorchid',
+                borderColor: 'darkorchid',
+                justifyContent: "center",
+                width: 300,
+                alignSelf: "center",
+                alignContent: "center"
+            }}>
+                <Text>Explore Screen</Text>
+                <Button
+                    title="Sub Screen"
+                    onPress={() => navigation.navigate('HomeSubScreen')}
+                />
+            </View>
         </View>
     )
 }

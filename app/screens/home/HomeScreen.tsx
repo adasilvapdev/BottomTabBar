@@ -7,11 +7,23 @@ const HomeScreen = () => {
     const navigation = useNavigation()
     return (
         <View style={styles.container}>
-            <Text>Home Screen</Text>
-            <Button
-                title="Sub Screen"
-                onPress={() => navigation.navigate('HomeSubScreen')}
-            />
+
+            <View style={{
+                flex: 2,
+                borderWidth: 1,
+                backgroundColor: 'pink',
+                borderColor: 'pink',
+                justifyContent: "center",
+                width: 300,
+                alignSelf: "center",
+                alignContent: "center"
+            }}>
+                <Text>Home Screen</Text>
+                <Button
+                    title="Sub Screen"
+                    onPress={() => navigation.navigate('HomeSubScreen')}
+                />
+            </View>
         </View>
     )
 }

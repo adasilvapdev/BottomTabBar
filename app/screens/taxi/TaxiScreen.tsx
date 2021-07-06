@@ -6,11 +6,22 @@ const TaxiScreen = () => {
     const navigation = useNavigation()
     return (
         <View style={styles.container}>
-            <Text>Taxi Screen</Text>
-            <Button
-                title="Sub Screen"
-                onPress={() => navigation.navigate('HomeSubScreen')}
-            />
+            <View style={{
+                flex: 2,
+                borderWidth: 1,
+                backgroundColor: 'lawngreen',
+                borderColor: 'lawngreen',
+                justifyContent: "center",
+                width: 300,
+                alignSelf: "center",
+                alignContent: "center"
+            }}>
+                <Text>Taxi Screen</Text>
+                <Button
+                    title="Sub Screen"
+                    onPress={() => navigation.navigate('HomeSubScreen')}
+                />
+            </View>
         </View>
     )
 }

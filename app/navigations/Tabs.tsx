@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import { createBottomTabNavigator, BottomTabBar } from '@react-navigation/bottom-tabs';
 import Svg, { Path, } from 'react-native-svg';
 import LinearGradient from 'react-native-linear-gradient';
@@ -18,10 +18,20 @@ const TabBarCustomButton = ({ accessibilityState, children, onPress }: any) => {
     if (isSelected) {   //* If button is selected, return the curvy floating button
         return (
             <View
-                style={{ flex: 1, alignItems: "center" }}
+                style={{
+                    flex: 1,
+                    alignItems: "center",
+                }}
             >
-                <View style={{ flexDirection: "row", position: "absolute", top: 0 }}>
-                    <View style={{ flex: 1, backgroundColor: THEME.COLORS.WHITE }}></View>
+                <View style={{
+                    flexDirection: "row",
+                    position: "absolute",
+                    top: 0
+                }}>
+                    <View style={{
+                        flex: 1,
+                        backgroundColor: 'blue'
+                    }}></View>
                     <Svg
                         width={75}
                         height={61}
@@ -30,9 +40,14 @@ const TabBarCustomButton = ({ accessibilityState, children, onPress }: any) => {
                         <Path
                             d="M75.2 0v61H0V0c4.1 0 7.4 3.1 7.9 7.1C10 21.7 22.5 33 37.7 33c15.2 0 27.7-11.3 29.7-25.9.5-4 3.9-7.1 7.9-7.1h-.1z"
                             fill={THEME.COLORS.WHITE}
+                            fillOpacity={0.9}
+
                         />
                     </Svg>
-                    <View style={{ flex: 1, backgroundColor: THEME.COLORS.WHITE }}></View>
+                    <View style={{
+                        flex: 1,
+                        backgroundColor: 'red'
+                    }}></View>
                 </View>
 
 
@@ -40,12 +55,15 @@ const TabBarCustomButton = ({ accessibilityState, children, onPress }: any) => {
                     // style={styles.linearGradient}
                     style={{
                         // top: -22.5,
-                        top: -22.5,
+                        // top: -22.5,
+                        top: -28,
                         justifyContent: "center",
                         alignItems: "center",
                         width: 50,
                         height: 50,
                         borderRadius: 25,
+
+                        // backgroundColor: 'rgba(52, 52, 52, 0.8)',
                         // backgroundColor: THEME.COLORS.WHITE
                     }}
                 >
@@ -74,8 +92,10 @@ const TabBarCustomButton = ({ accessibilityState, children, onPress }: any) => {
             <TouchableOpacity
                 style={{
                     flex: 1,
-                    height: 60,
-                    backgroundColor: COLORS.WHITE
+                    height: 61,
+                    backgroundColor: COLORS.WHITE,
+                    opacity: .9,
+                    borderWidth: 0
                 }}
                 activeOpacity={1}
                 onPress={onPress}
@@ -86,9 +106,71 @@ const TabBarCustomButton = ({ accessibilityState, children, onPress }: any) => {
     }
 }
 
+
+function MyTabBar({ state, descriptors, navigation }: any) {
+    const focusedOptions = descriptors[state.routes[state.index].key].options;
+
+    if (focusedOptions.tabBarVisible === false) {
+        return null;
+    }
+
+    return (
+        <View style={{ flexDirection: 'row' }}>
+            {state.routes.map((route: any, index: number) => {
+                const { options } = descriptors[route.key];
+                const label =
+                    options.tabBarLabel !== undefined
+                        ? options.tabBarLabel
+                        : options.title !== undefined
+                            ? options.title
+                            : route.name;
+
+                const isFocused = state.index === index;
+
+                const onPress = () => {
+                    const event = navigation.emit({
+                        type: 'tabPress',
+                        target: route.key,
+                        canPreventDefault: true,
+                    });
+
+                    if (!isFocused && !event.defaultPrevented) {
+                        navigation.navigate(route.name);
+                    }
+                };
+
+                const onLongPress = () => {
+                    navigation.emit({
+                        type: 'tabLongPress',
+                        target: route.key,
+                    });
+                };
+
+                return (
+                    <TouchableOpacity
+                        accessibilityRole="button"
+                        accessibilityState={isFocused ? { selected: true } : {}}
+                        accessibilityLabel={options.tabBarAccessibilityLabel}
+                        testID={options.tabBarTestID}
+                        onPress={onPress}
+                        onLongPress={onLongPress}
+                        style={{ flex: 1 }}
+                    >
+                        <Text style={{ color: isFocused ? '#673ab7' : '#222' }}>
+                            {label}
+                        </Text>
+                    </TouchableOpacity>
+                );
+            })}
+        </View>
+    );
+}
+
 const Tabs = () => {
     return (
         <Tab.Navigator
+
+            // tabBar={props => <MyTabBar {...props} />}
 
             tabBarOptions={{
                 showLabel: false,
@@ -97,20 +179,14 @@ const Tabs = () => {
                     backgroundColor: "transparent",
                     elevation: 0, //* Just fot Android,
 
-                    marginLeft: '5%',
-                    marginRight: '5%',
-                    marginBottom: '10%',
                     borderBottomEndRadius: 30,
-                    // borderBottomLeftRadius: 30,
-                    // borderBottomRightRadius: 40,
-                    // borderWidth: 1,
-                    // borderColor: THEME.COLORS.PRIMARY,
-                    // marginBottom: '5%',
                     borderRadius: 30,
-                    // paddingLeft: '3%',
-                    // paddingRight: '3%',
-                    // paddingBottom: '2%',
-                    // paddingTop: '2%',
+
+
+                    position: 'absolute',
+                    left: 20,
+                    right: 20,
+                    height: 80
                 }
             }}
         >

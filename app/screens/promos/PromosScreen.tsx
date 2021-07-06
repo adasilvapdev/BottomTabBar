@@ -6,11 +6,22 @@ const PromosScreen = () => {
     const navigation = useNavigation()
     return (
         <View style={styles.container}>
-            <Text>Promos Screen</Text>
-            <Button
-                title="Sub Screen"
-                onPress={() => navigation.navigate('HomeSubScreen')}
-            />
+            <View style={{
+                flex: 2,
+                borderWidth: 1,
+                backgroundColor: 'aqua',
+                borderColor: 'aqua',
+                justifyContent: "center",
+                width: 300,
+                alignSelf: "center",
+                alignContent: "center"
+            }}>
+                <Text>Promos Screen</Text>
+                <Button
+                    title="Sub Screen"
+                    onPress={() => navigation.navigate('HomeSubScreen')}
+                />
+            </View>
         </View>
     )
 }
