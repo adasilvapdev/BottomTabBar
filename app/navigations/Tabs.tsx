@@ -16,7 +16,6 @@ const Tab = createBottomTabNavigator();
 // const TabBarCustomButton = ({ accessibilityState, children, onPress }: any) => {
 const TabBarCustomButton = (props: any) => {
     const { accessibilityState, children, onPress, accessibilityLabel } = props
-    let title = accessibilityLabel.substring(0, accessibilityLabel.indexOf(","))
     console.log('props: ', props)
     console.log('\n--------------------')
 
@@ -90,7 +89,7 @@ const TabBarCustomButton = (props: any) => {
                         position: "absolute",
                         top: '55%',
                         bottom: 0,
-                    }]}>{title}</Text>
+                    }]}>{accessibilityLabel}</Text>
             </View>
         )
     } else {    //* If is not selected, then return the normal bottom tab button
@@ -111,7 +110,7 @@ const TabBarCustomButton = (props: any) => {
                 onPress={onPress}
             >
                 {children}
-                <Text style={styles.title}>{title}</Text>
+                <Text style={styles.title}>{accessibilityLabel}</Text>
             </TouchableOpacity>
         )
     }
@@ -208,9 +207,9 @@ const Tabs = () => {
                     //     color: 'black',
                     //     backgroundColor: 'aqua'
                     // },
+                    tabBarAccessibilityLabel: 'Home',
                     unmountOnBlur: true,
                     tabBarTestID: '0',
-                    title: "Home",
                     tabBarIcon: ({ focused }) => (
                         <HomeIcon
                             color={focused ? THEME.COLORS.WHITE : THEME.COLORS.GRAY}
@@ -227,9 +226,9 @@ const Tabs = () => {
                 name="PromosScreen"
                 component={PromosScreen}
                 options={{
+                    tabBarAccessibilityLabel: 'Promos',
                     unmountOnBlur: true,
                     tabBarTestID: '1',
-                    title: "Promos",
                     tabBarIcon: ({ focused }) => (
                         <TicketIcon
                             color={focused ? THEME.COLORS.WHITE : THEME.COLORS.GRAY}
@@ -246,9 +245,9 @@ const Tabs = () => {
                 name="ExploreScreen"
                 component={ExploreScreen}
                 options={{
+                    tabBarAccessibilityLabel: 'Explorar',
                     unmountOnBlur: true,
                     tabBarTestID: '2',
-                    title: "Explorar",
                     tabBarIcon: ({ focused }) => (
                         <SearchIcon
                             color={focused ? THEME.COLORS.WHITE : THEME.COLORS.GRAY}
@@ -265,9 +264,9 @@ const Tabs = () => {
                 name="FAQsScreen"
                 component={FAQsScreen}
                 options={{
+                    tabBarAccessibilityLabel: 'Ayuda',
                     unmountOnBlur: true,
                     tabBarTestID: '3',
-                    title: "Ayuda",
                     tabBarIcon: ({ focused }) => (
                         <SearchIcon
                             color={focused ? THEME.COLORS.WHITE : THEME.COLORS.GRAY}
@@ -284,10 +283,9 @@ const Tabs = () => {
                 name="TaxiScreen"
                 component={TaxiScreen}
                 options={{
+                    tabBarAccessibilityLabel: 'Taxi',
                     unmountOnBlur: true,
                     tabBarTestID: '4',
-                    title: "Taxi",
-                    // tabBarLabel: 'Updates',
                     tabBarIcon: ({ focused }) => (
                         <ProfileIcon
                             color={focused ? THEME.COLORS.WHITE : THEME.COLORS.GRAY}
@@ -323,12 +321,7 @@ const styles = StyleSheet.create({
     },
     title: {
         justifyContent: "center",
-        // alignContent: "center",
-        // alignItems: "center",
-        // alignSelf: "center",
         textAlign: "center",
-        // textAlignVertical: "center",
-        // textAlignVertical: "center",
         fontSize: 10,
         color: THEME.COLORS.GRAY
     }
