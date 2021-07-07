@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Svg, { Path, } from 'react-native-svg';
@@ -8,93 +8,98 @@ import { PromosNavigation } from './sections/promos'
 import { ExploreNavigation } from './sections/explore'
 import { FAQsNavigation } from './sections/faqs'
 import { TaxiNavigation } from './sections/taxi'
-
 import { HomeIcon, TicketIcon, SearchIcon, ProfileIcon } from '../components/atoms/icons';
 import { THEME } from '../styles';
 import { COLORS } from '../styles/theme';
+
 const Tab = createBottomTabNavigator();
 
-// const TabBarCustomButton = ({ accessibilityState, children, onPress }: any) => {
-const TabBarCustomButton = (props: any) => {
-    const { accessibilityState, children, onPress, accessibilityLabel, tabId } = props
-    // console.log('props: ', props)
-    // console.log('tabId: ', tabId)
-    // console.log('\n--------------------')
+const TabBarCustomButton = ({
+    accessibilityState,
+    children,
+    onPress,
+    accessibilityLabel,
+    tabId,
+    tabBarVisible,
+}: any) => {
 
     let isSelected = accessibilityState.selected
     if (isSelected) {   //* If button is selected, return the curvy floating button
-        return (
-            <View
-                style={{
-                    flex: 1,
-                    alignItems: "center",
-                }}
-            >
-                <View style={{
-                    flexDirection: "row",
-                    position: "absolute",
-                    top: 0,
-                }}>
+        if (tabBarVisible) {
+            return (
+                <View
+                    style={{
+                        flex: 1,
+                        alignItems: "center",
+                    }}
+                >
+                    <View style={{
+                        flexDirection: "row",
+                        position: "absolute",
+                        top: 0,
+                    }}>
 
-                    {/* <View style={{
+                        {/* <View style={{
                         flex: 1,
                         // marginRight: '50%'
                     }}></View> */}
 
-                    <Svg
-                        width={75}
-                        height={61}
-                        style={{
-                        }}
-                        viewBox="0 0 75 61"
-                    >
-                        <Path
-                            // d="M75.2 0v61H0V0c4.1 0 7.4 3.1 7.9 7.1C10 21.7 22.5 33 37.7 33c15.2 0 27.7-11.3 29.7-25.9.5-4 3.9-7.1 7.9-7.1h-.1z"
-                            d="M72.9 0v61H0V0c4.1 0 7.4 3.1 7.9 7.1C10 21.7 22.5 33 37.7 33c15.2 0 27.7-11.3 29.7-25.9.5-4 3.9-7.1 7.9-7.1h-.1z"
-                            fill={THEME.COLORS.WHITE}
-                            // fill={'pink'}
-                            // fill={'transparent'}
-                            fillOpacity={0.9}
-                        />
-                    </Svg>
+                        <Svg
+                            width={75}
+                            height={61}
+                            style={{
+                            }}
+                            viewBox="0 0 75 61"
+                        >
+                            <Path
+                                // d="M75.2 0v61H0V0c4.1 0 7.4 3.1 7.9 7.1C10 21.7 22.5 33 37.7 33c15.2 0 27.7-11.3 29.7-25.9.5-4 3.9-7.1 7.9-7.1h-.1z"
+                                d="M72.9 0v61H0V0c4.1 0 7.4 3.1 7.9 7.1C10 21.7 22.5 33 37.7 33c15.2 0 27.7-11.3 29.7-25.9.5-4 3.9-7.1 7.9-7.1h-.1z"
+                                fill={THEME.COLORS.WHITE}
+                                // fill={'pink'}
+                                // fill={'transparent'}
+                                fillOpacity={0.9}
+                            />
+                        </Svg>
 
-                    {/* <View style={{
+                        {/* <View style={{
                         flex: 1,
                         // marginRight: '6%'
                     }}></View> */}
+                    </View>
 
-                </View>
-
-                <TouchableOpacity
-                    activeOpacity={0.9}
-                    onPress={() => console.log('pressing')}
-                    style={{
-                        width: '100%',
-                        height: '100%',
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }}
-                >
-                    <LinearGradient colors={['#020250', '#FF00CF']}
+                    <TouchableOpacity
+                        activeOpacity={0.9}
+                        onPress={() => console.log('pressing')}
                         style={{
-                            top: -40,
-                            width: 50,
-                            height: 50,
-                            borderRadius: 25,
+                            width: '100%',
+                            height: '100%',
+                            justifyContent: "center",
+                            alignItems: "center",
                         }}
                     >
-                        {children}
-                    </LinearGradient>
-                </TouchableOpacity>
+                        <LinearGradient colors={['#020250', '#FF00CF']}
+                            style={{
+                                top: -40,
+                                width: 50,
+                                height: 50,
+                                borderRadius: 25,
+                            }}
+                        >
+                            {children}
+                        </LinearGradient>
+                    </TouchableOpacity>
 
-                <Text style={[
-                    styles.title, {
-                        position: "absolute",
-                        top: '55%',
-                        bottom: 0,
-                    }]}>{accessibilityLabel}</Text>
-            </View>
-        )
+                    <Text style={[
+                        styles.title, {
+                            position: "absolute",
+                            top: '55%',
+                            bottom: 0,
+                        }]}>{accessibilityLabel}</Text>
+                </View>
+            )
+        } else {
+            return null
+        }
     } else {    //* If is not selected, then return the normal bottom tab button
         return (
             <TouchableOpacity
@@ -120,6 +125,7 @@ const TabBarCustomButton = (props: any) => {
 }
 
 const BottomTabsNavigator = () => {
+    const [tabBarVisible, setTabBarVisible] = useState(true)
     return (
         <Tab.Navigator
             lazy={false}
@@ -140,16 +146,10 @@ const BottomTabsNavigator = () => {
             <Tab.Screen
                 name="HomeNavigation"
                 component={HomeNavigation}
-                options={{
-                    // tabBarVisible: false,
-                    // tabBarBadge: 5,
-                    // tabBarBadgeStyle: {
-                    //     color: 'black',
-                    //     backgroundColor: 'aqua'
-                    // },
+                initialParams={{ setTabBarVisible: setTabBarVisible }}
+                options={({ route, navigation }) => ({
                     tabBarAccessibilityLabel: 'Home',
                     unmountOnBlur: true,
-                    tabBarTestID: '0',
                     tabBarIcon: ({ focused }) => (
                         <HomeIcon
                             color={focused ? THEME.COLORS.WHITE : THEME.COLORS.GRAY}
@@ -158,18 +158,20 @@ const BottomTabsNavigator = () => {
                     tabBarButton: (props) => (
                         <TabBarCustomButton
                             tabId={0}
+                            tabBarVisible={tabBarVisible}
+                            route={route}
+                            navigation={navigation}
                             {...props}
                         />
                     )
-                }}
+                })}
             />
             <Tab.Screen
                 name="PromosNavigation"
                 component={PromosNavigation}
-                options={{
+                options={({ route, navigation }) => ({
                     tabBarAccessibilityLabel: 'Promos',
                     unmountOnBlur: true,
-                    tabBarTestID: '1',
                     tabBarIcon: ({ focused }) => (
                         <TicketIcon
                             color={focused ? THEME.COLORS.WHITE : THEME.COLORS.GRAY}
@@ -178,18 +180,20 @@ const BottomTabsNavigator = () => {
                     tabBarButton: (props) => (
                         <TabBarCustomButton
                             tabId={1}
+                            tabBarVisible={tabBarVisible}
+                            route={route}
+                            navigation={navigation}
                             {...props}
                         />
                     )
-                }}
+                })}
             />
             <Tab.Screen
                 name="ExploreNavigation"
                 component={ExploreNavigation}
-                options={{
+                options={({ route, navigation }) => ({
                     tabBarAccessibilityLabel: 'Explorar',
                     unmountOnBlur: true,
-                    tabBarTestID: '2',
                     tabBarIcon: ({ focused }) => (
                         <SearchIcon
                             color={focused ? THEME.COLORS.WHITE : THEME.COLORS.GRAY}
@@ -198,18 +202,20 @@ const BottomTabsNavigator = () => {
                     tabBarButton: (props) => (
                         <TabBarCustomButton
                             tabId={2}
+                            tabBarVisible={tabBarVisible}
+                            route={route}
+                            navigation={navigation}
                             {...props}
                         />
                     )
-                }}
+                })}
             />
             <Tab.Screen
                 name="FAQsNavigation"
                 component={FAQsNavigation}
-                options={{
+                options={({ route, navigation }) => ({
                     tabBarAccessibilityLabel: 'Ayuda',
                     unmountOnBlur: true,
-                    tabBarTestID: '3',
                     tabBarIcon: ({ focused }) => (
                         <SearchIcon
                             color={focused ? THEME.COLORS.WHITE : THEME.COLORS.GRAY}
@@ -218,18 +224,20 @@ const BottomTabsNavigator = () => {
                     tabBarButton: (props) => (
                         <TabBarCustomButton
                             tabId={3}
+                            tabBarVisible={tabBarVisible}
+                            route={route}
+                            navigation={navigation}
                             {...props}
                         />
                     )
-                }}
+                })}
             />
             <Tab.Screen
                 name="TaxiNavigation"
                 component={TaxiNavigation}
-                options={{
+                options={({ route, navigation }) => ({
                     tabBarAccessibilityLabel: 'Taxi',
                     unmountOnBlur: true,
-                    tabBarTestID: '4',
                     tabBarIcon: ({ focused }) => (
                         <ProfileIcon
                             color={focused ? THEME.COLORS.WHITE : THEME.COLORS.GRAY}
@@ -238,10 +246,13 @@ const BottomTabsNavigator = () => {
                     tabBarButton: (props) => (
                         <TabBarCustomButton
                             tabId={4}
+                            tabBarVisible={tabBarVisible}
+                            route={route}
+                            navigation={navigation}
                             {...props}
                         />
                     ),
-                }}
+                })}
             />
         </Tab.Navigator>
     )

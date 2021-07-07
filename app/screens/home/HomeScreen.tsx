@@ -10,11 +10,9 @@ const HomeScreen = () => {
         // const currentOffset = event.nativeEvent.contentOffset.y;
         // const dif = currentOffset - (offset || 0);
 
-        console.log('Im scrolling')
-
-        console.log('event: ', event)
-
-        console.log('\n--------------------')
+        // console.log('Im scrolling')
+        // console.log('event: ', event)
+        // console.log('\n--------------------')
     }
 
     return (
