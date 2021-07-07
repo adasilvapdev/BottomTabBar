@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
-import { createBottomTabNavigator, BottomTabBar } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Svg, { Path, } from 'react-native-svg';
 import LinearGradient from 'react-native-linear-gradient';
 import { HomeScreen } from '../screens/home';
@@ -15,8 +15,9 @@ const Tab = createBottomTabNavigator();
 
 // const TabBarCustomButton = ({ accessibilityState, children, onPress }: any) => {
 const TabBarCustomButton = (props: any) => {
-    const { accessibilityState, children, onPress, accessibilityLabel } = props
+    const { accessibilityState, children, onPress, accessibilityLabel, tabId } = props
     console.log('props: ', props)
+    console.log('tabId: ', tabId)
     console.log('\n--------------------')
 
     let isSelected = accessibilityState.selected
@@ -52,37 +53,27 @@ const TabBarCustomButton = (props: any) => {
 
                 </View>
 
-
-                <LinearGradient colors={['#020250', '#FF00CF']}
-                    // style={styles.linearGradient}
+                <TouchableOpacity
+                    activeOpacity={0.85}
+                    onPress={() => console.log('pressing')}
                     style={{
-                        // top: -22.5,
-                        // top: -22.5,
-                        top: -28,
+                        width: '100%',
+                        height: '100%',
                         justifyContent: "center",
                         alignItems: "center",
-                        width: 50,
-                        height: 50,
-                        borderRadius: 25,
-                        // backgroundColor: 'rgba(52, 52, 52, 0.8)',
-                        // backgroundColor: THEME.COLORS.WHITE
                     }}
                 >
-
-                    {/* <TouchableOpacity
-                    // style={{
-                    //     top: -22.5,
-                    //     justifyContent: "center",
-                    //     alignItems: "center",
-                    //     width: 50,
-                    //     height: 50,
-                    //     borderRadius: 25,
-                    //     backgroundColor: THEME.COLORS.WHITE
-                    // }}
-                    > */}
-                    {children}
-                    {/* </TouchableOpacity> */}
-                </LinearGradient>
+                    <LinearGradient colors={['#020250', '#FF00CF']}
+                        style={{
+                            top: -40,
+                            width: 50,
+                            height: 50,
+                            borderRadius: 25,
+                        }}
+                    >
+                        {children}
+                    </LinearGradient>
+                </TouchableOpacity>
 
                 <Text style={[
                     styles.title, {
@@ -95,17 +86,17 @@ const TabBarCustomButton = (props: any) => {
     } else {    //* If is not selected, then return the normal bottom tab button
         return (
             <TouchableOpacity
-                // activeOpacity={1}
                 activeOpacity={0.85}
                 style={{
                     flex: 1,
                     height: 61,
                     backgroundColor: COLORS.WHITE,
                     opacity: .9,
-                    // borderWidth: 0,
-                    // borderWidth: 1,
-                    // borderColor: 'yellow',
-                    paddingBottom: '1%'
+                    paddingBottom: '1%',
+                    borderTopLeftRadius: tabId === 0 ? 20 : 0,
+                    borderBottomLeftRadius: tabId === 0 ? 20 : 0,
+                    borderTopRightRadius: tabId === 4 ? 20 : 0,
+                    borderBottomRightRadius: tabId === 4 ? 20 : 0
                 }}
                 onPress={onPress}
             >
@@ -116,84 +107,21 @@ const TabBarCustomButton = (props: any) => {
     }
 }
 
-
-function MyTabBar({ state, descriptors, navigation }: any) {
-    const focusedOptions = descriptors[state.routes[state.index].key].options;
-
-    if (focusedOptions.tabBarVisible === false) {
-        return null;
-    }
-
-    return (
-        <View style={{ flexDirection: 'row' }}>
-            {state.routes.map((route: any, index: number) => {
-                const { options } = descriptors[route.key];
-                const label =
-                    options.tabBarLabel !== undefined
-                        ? options.tabBarLabel
-                        : options.title !== undefined
-                            ? options.title
-                            : route.name;
-
-                const isFocused = state.index === index;
-
-                const onPress = () => {
-                    const event = navigation.emit({
-                        type: 'tabPress',
-                        target: route.key,
-                        canPreventDefault: true,
-                    });
-
-                    if (!isFocused && !event.defaultPrevented) {
-                        navigation.navigate(route.name);
-                    }
-                };
-
-                const onLongPress = () => {
-                    navigation.emit({
-                        type: 'tabLongPress',
-                        target: route.key,
-                    });
-                };
-
-                return (
-                    <TouchableOpacity
-                        accessibilityRole="button"
-                        accessibilityState={isFocused ? { selected: true } : {}}
-                        accessibilityLabel={options.tabBarAccessibilityLabel}
-                        testID={options.tabBarTestID}
-                        onPress={onPress}
-                        onLongPress={onLongPress}
-                        style={{ flex: 1 }}
-                    >
-                        <Text style={{ color: isFocused ? '#673ab7' : '#222' }}>
-                            {label}
-                        </Text>
-                    </TouchableOpacity>
-                );
-            })}
-        </View>
-    );
-}
-
 const Tabs = () => {
     return (
         <Tab.Navigator
-            // tabBar={props => <MyTabBar {...props} />}
-            // lazy={false}
+            lazy={false}
             tabBarOptions={{
                 showLabel: false,
                 style: {
+                    position: 'absolute',
                     borderTopWidth: 0,
                     backgroundColor: "transparent",
                     elevation: 0, //* Just fot Android,
-
-                    // borderBottomEndRadius: 30,
-                    // borderRadius: 30,
-                    position: 'absolute',
                     left: 20,
                     right: 20,
-                    height: 80
+                    height: 80,
+                    borderRadius: 15
                 }
             }}
         >
@@ -217,6 +145,7 @@ const Tabs = () => {
                     ),
                     tabBarButton: (props) => (
                         <TabBarCustomButton
+                            tabId={0}
                             {...props}
                         />
                     )
@@ -236,6 +165,7 @@ const Tabs = () => {
                     ),
                     tabBarButton: (props) => (
                         <TabBarCustomButton
+                            tabId={1}
                             {...props}
                         />
                     )
@@ -255,6 +185,7 @@ const Tabs = () => {
                     ),
                     tabBarButton: (props) => (
                         <TabBarCustomButton
+                            tabId={2}
                             {...props}
                         />
                     )
@@ -274,6 +205,7 @@ const Tabs = () => {
                     ),
                     tabBarButton: (props) => (
                         <TabBarCustomButton
+                            tabId={3}
                             {...props}
                         />
                     )
@@ -293,6 +225,7 @@ const Tabs = () => {
                     ),
                     tabBarButton: (props) => (
                         <TabBarCustomButton
+                            tabId={4}
                             {...props}
                         />
                     ),
