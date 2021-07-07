@@ -3,11 +3,11 @@ import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Svg, { Path, } from 'react-native-svg';
 import LinearGradient from 'react-native-linear-gradient';
-import { HomeNavigation } from '../navigations/sections/home'
-import { PromosNavigation } from '../navigations/sections/promos'
-import { ExploreNavigation } from '../navigations/sections/explore'
-import { FAQsNavigation } from '../navigations/sections/faqs'
-import { TaxiNavigation } from '../navigations/sections/taxi'
+import { HomeNavigation } from './sections/home'
+import { PromosNavigation } from './sections/promos'
+import { ExploreNavigation } from './sections/explore'
+import { FAQsNavigation } from './sections/faqs'
+import { TaxiNavigation } from './sections/taxi'
 
 import { HomeIcon, TicketIcon, SearchIcon, ProfileIcon } from '../components/atoms/icons';
 import { THEME } from '../styles';
@@ -119,7 +119,7 @@ const TabBarCustomButton = (props: any) => {
     }
 }
 
-const Tabs = () => {
+const BottomTabsNavigator = () => {
     return (
         <Tab.Navigator
             lazy={false}
@@ -247,7 +247,7 @@ const Tabs = () => {
     )
 }
 
-export default Tabs
+export default BottomTabsNavigator
 
 const styles = StyleSheet.create({
     linearGradient: {
