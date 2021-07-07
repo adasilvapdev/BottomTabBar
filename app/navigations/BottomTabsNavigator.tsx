@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Svg, { Path, } from 'react-native-svg';
@@ -147,7 +147,7 @@ const BottomTabsNavigator = () => {
                 name="HomeNavigation"
                 component={HomeNavigation}
                 initialParams={{ setTabBarVisible: setTabBarVisible }}
-                options={({ route, navigation }) => ({
+                options={{
                     tabBarAccessibilityLabel: 'Home',
                     unmountOnBlur: true,
                     tabBarIcon: ({ focused }) => (
@@ -159,17 +159,16 @@ const BottomTabsNavigator = () => {
                         <TabBarCustomButton
                             tabId={0}
                             tabBarVisible={tabBarVisible}
-                            route={route}
-                            navigation={navigation}
                             {...props}
                         />
                     )
-                })}
+                }}
             />
             <Tab.Screen
                 name="PromosNavigation"
                 component={PromosNavigation}
-                options={({ route, navigation }) => ({
+                initialParams={{ setTabBarVisible: setTabBarVisible }}
+                options={{
                     tabBarAccessibilityLabel: 'Promos',
                     unmountOnBlur: true,
                     tabBarIcon: ({ focused }) => (
@@ -181,17 +180,16 @@ const BottomTabsNavigator = () => {
                         <TabBarCustomButton
                             tabId={1}
                             tabBarVisible={tabBarVisible}
-                            route={route}
-                            navigation={navigation}
                             {...props}
                         />
                     )
-                })}
+                }}
             />
             <Tab.Screen
                 name="ExploreNavigation"
                 component={ExploreNavigation}
-                options={({ route, navigation }) => ({
+                initialParams={{ setTabBarVisible: setTabBarVisible }}
+                options={{
                     tabBarAccessibilityLabel: 'Explorar',
                     unmountOnBlur: true,
                     tabBarIcon: ({ focused }) => (
@@ -203,17 +201,16 @@ const BottomTabsNavigator = () => {
                         <TabBarCustomButton
                             tabId={2}
                             tabBarVisible={tabBarVisible}
-                            route={route}
-                            navigation={navigation}
                             {...props}
                         />
                     )
-                })}
+                }}
             />
             <Tab.Screen
                 name="FAQsNavigation"
                 component={FAQsNavigation}
-                options={({ route, navigation }) => ({
+                initialParams={{ setTabBarVisible: setTabBarVisible }}
+                options={{
                     tabBarAccessibilityLabel: 'Ayuda',
                     unmountOnBlur: true,
                     tabBarIcon: ({ focused }) => (
@@ -225,17 +222,16 @@ const BottomTabsNavigator = () => {
                         <TabBarCustomButton
                             tabId={3}
                             tabBarVisible={tabBarVisible}
-                            route={route}
-                            navigation={navigation}
                             {...props}
                         />
                     )
-                })}
+                }}
             />
             <Tab.Screen
                 name="TaxiNavigation"
                 component={TaxiNavigation}
-                options={({ route, navigation }) => ({
+                initialParams={{ setTabBarVisible: setTabBarVisible }}
+                options={{
                     tabBarAccessibilityLabel: 'Taxi',
                     unmountOnBlur: true,
                     tabBarIcon: ({ focused }) => (
@@ -247,12 +243,10 @@ const BottomTabsNavigator = () => {
                         <TabBarCustomButton
                             tabId={4}
                             tabBarVisible={tabBarVisible}
-                            route={route}
-                            navigation={navigation}
                             {...props}
                         />
                     ),
-                })}
+                }}
             />
         </Tab.Navigator>
     )
