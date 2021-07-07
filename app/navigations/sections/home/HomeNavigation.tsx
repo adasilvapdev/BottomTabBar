@@ -1,6 +1,6 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import { HomeScreen, HomeSubScreen } from '../../../screens/home'
+import { HomeScreen, HomeSubScreen, HomeSubSubScreen } from '../../../screens/home'
 
 const HomeNavigation: React.FC = ({ route, navigation }: any) => {
     const Stack = createStackNavigator();
@@ -31,6 +31,10 @@ const HomeNavigation: React.FC = ({ route, navigation }: any) => {
             <Stack.Screen
                 name="HomeSubScreen"
                 component={HomeSubScreen}
+            />
+            <Stack.Screen
+                name="HomeSubSubScreen"
+                component={HomeSubSubScreen}
             />
         </Stack.Navigator>
     )

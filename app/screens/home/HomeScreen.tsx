@@ -36,6 +36,11 @@ const HomeScreen = () => {
                         title="Sub Screen"
                         onPress={() => navigation.navigate('HomeSubScreen')}
                     />
+                    <Text>----------</Text>
+                    <Button
+                        title="Sub Sub Screen"
+                        onPress={() => navigation.navigate('HomeSubSubScreen')}
+                    />
                 </View>
                 <View style={{ flex: 1, marginTop: '15%', marginBottom: '50%' }}>
                     <Text>
