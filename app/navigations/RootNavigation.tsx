@@ -17,11 +17,12 @@ const RootNavigation: React.FC = () => {
                 screenOptions={{ headerShown: false, headerBackTitleVisible: false }}>
 
                 <Stack.Screen
-                    name="HomeNavigation"
+                    // name="HomeNavigation"
+                    name="Tabs"
                     // component={HomeNavigation}
                     component={Tabs}
                 />
-                <Stack.Screen
+                {/* <Stack.Screen
                     name="PromosNavigation"
                     component={PromosNavigation}
                 />
@@ -36,7 +37,7 @@ const RootNavigation: React.FC = () => {
                 <Stack.Screen
                     name="TaxiNavigation"
                     component={TaxiNavigation}
-                />
+                /> */}
             </Stack.Navigator>
         </NavigationContainer>
     );

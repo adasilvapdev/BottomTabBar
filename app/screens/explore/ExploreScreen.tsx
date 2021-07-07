@@ -21,7 +21,7 @@ const ExploreScreen = () => {
                     <Text style={{ color: 'white' }}>Explore Screen</Text>
                     <Button
                         title="Sub Screen"
-                        onPress={() => navigation.navigate('HomeSubScreen')}
+                        onPress={() => navigation.navigate('ExploreSubScreen')}
                     />
                 </View>
                 <View style={{ flex: 1, marginTop: '15%', marginBottom: '50%' }}>

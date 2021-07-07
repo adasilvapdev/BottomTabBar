@@ -3,11 +3,12 @@ import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Svg, { Path, } from 'react-native-svg';
 import LinearGradient from 'react-native-linear-gradient';
-import { HomeScreen } from '../screens/home';
-import { PromosScreen } from '../screens/promos';
-import { ExploreScreen } from '../screens/explore';
-import { FAQsScreen } from '../screens/faqs';
-import { TaxiScreen } from '../screens/taxi';
+import { HomeNavigation } from '../navigations/sections/home'
+import { PromosNavigation } from '../navigations/sections/promos'
+import { ExploreNavigation } from '../navigations/sections/explore'
+import { FAQsNavigation } from '../navigations/sections/faqs'
+import { TaxiNavigation } from '../navigations/sections/taxi'
+
 import { HomeIcon, TicketIcon, SearchIcon, ProfileIcon } from '../components/atoms/icons';
 import { THEME } from '../styles';
 import { COLORS } from '../styles/theme';
@@ -16,9 +17,9 @@ const Tab = createBottomTabNavigator();
 // const TabBarCustomButton = ({ accessibilityState, children, onPress }: any) => {
 const TabBarCustomButton = (props: any) => {
     const { accessibilityState, children, onPress, accessibilityLabel, tabId } = props
-    console.log('props: ', props)
-    console.log('tabId: ', tabId)
-    console.log('\n--------------------')
+    // console.log('props: ', props)
+    // console.log('tabId: ', tabId)
+    // console.log('\n--------------------')
 
     let isSelected = accessibilityState.selected
     if (isSelected) {   //* If button is selected, return the curvy floating button
@@ -137,8 +138,8 @@ const Tabs = () => {
             }}
         >
             <Tab.Screen
-                name="HomeScreen"
-                component={HomeScreen}
+                name="HomeNavigation"
+                component={HomeNavigation}
                 options={{
                     // tabBarVisible: false,
                     // tabBarBadge: 5,
@@ -163,8 +164,8 @@ const Tabs = () => {
                 }}
             />
             <Tab.Screen
-                name="PromosScreen"
-                component={PromosScreen}
+                name="PromosNavigation"
+                component={PromosNavigation}
                 options={{
                     tabBarAccessibilityLabel: 'Promos',
                     unmountOnBlur: true,
@@ -183,8 +184,8 @@ const Tabs = () => {
                 }}
             />
             <Tab.Screen
-                name="ExploreScreen"
-                component={ExploreScreen}
+                name="ExploreNavigation"
+                component={ExploreNavigation}
                 options={{
                     tabBarAccessibilityLabel: 'Explorar',
                     unmountOnBlur: true,
@@ -203,8 +204,8 @@ const Tabs = () => {
                 }}
             />
             <Tab.Screen
-                name="FAQsScreen"
-                component={FAQsScreen}
+                name="FAQsNavigation"
+                component={FAQsNavigation}
                 options={{
                     tabBarAccessibilityLabel: 'Ayuda',
                     unmountOnBlur: true,
@@ -223,8 +224,8 @@ const Tabs = () => {
                 }}
             />
             <Tab.Screen
-                name="TaxiScreen"
-                component={TaxiScreen}
+                name="TaxiNavigation"
+                component={TaxiNavigation}
                 options={{
                     tabBarAccessibilityLabel: 'Taxi',
                     unmountOnBlur: true,

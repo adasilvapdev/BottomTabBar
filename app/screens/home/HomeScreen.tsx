@@ -4,8 +4,24 @@ import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
     const navigation = useNavigation()
+
+    const onScroll = (event: any) => {
+        // const { navigation } = this.props;
+        // const currentOffset = event.nativeEvent.contentOffset.y;
+        // const dif = currentOffset - (offset || 0);
+
+        console.log('Im scrolling')
+
+        console.log('event: ', event)
+
+        console.log('\n--------------------')
+    }
+
     return (
-        <ScrollView style={styles.container}>
+        <ScrollView
+            onScroll={(event: any) => onScroll(event)}
+            style={styles.container}
+        >
             <View style={{
                 borderWidth: 1,
                 backgroundColor: 'pink',

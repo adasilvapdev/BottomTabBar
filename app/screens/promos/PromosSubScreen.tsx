@@ -2,20 +2,21 @@ import React from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 
-const PromotionsSubScreen = () => {
+const PromosSubScreen = () => {
     const navigation = useNavigation()
     return (
         <View style={styles.container}>
-            <Text>PromosScreen Sub Screen</Text>
+            <Text>Promos Sub Screen</Text>
             <Button
-                title="Sub Screen"
-                onPress={() => navigation.navigate('HomeSubScreen')}
+                title="Go back"
+                color="purple"
+                onPress={() => navigation.goBack()}
             />
         </View>
     )
 }
 
-export default PromotionsSubScreen
+export default PromosSubScreen
 
 const styles = StyleSheet.create({
     container: {
