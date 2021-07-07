@@ -27,16 +27,12 @@ const TabBarCustomButton = (props: any) => {
                 style={{
                     flex: 1,
                     alignItems: "center",
-                    // borderWidth: 1,
                 }}
             >
                 <View style={{
                     flexDirection: "row",
                     position: "absolute",
                     top: 0,
-
-                    // borderWidth: 1,
-                    // borderColor: 'red'
                 }}>
 
                     <Svg
