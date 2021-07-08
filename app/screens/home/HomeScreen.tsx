@@ -1,25 +1,50 @@
-import React from 'react';
-import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, { useRef, useState } from 'react';
+import { StyleSheet, Text, View, Button, ScrollView, Animated, Dimensions } from 'react-native';
 
-const HomeScreen = () => {
-    const navigation = useNavigation()
+const isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
+    const paddingToBottom = 20;
+    return layoutMeasurement.height + contentOffset.y >=
+        contentSize.height - paddingToBottom;
+};
 
-    const onScroll = (event: any) => {
-        // const { navigation } = this.props;
-        // const currentOffset = event.nativeEvent.contentOffset.y;
-        // const dif = currentOffset - (offset || 0);
+const isCloseToTop = ({ contentOffset }) => {
+    return contentOffset.y === 0;
+};
 
-        // console.log('Im scrolling')
-        // console.log('event: ', event)
-        // console.log('\n--------------------')
-    }
+const HomeScreen = ({ route, navigation }: any) => {
+    const [index, setIndex] = useState(0);
+    const scrollY = useRef(new Animated.Value(0)).current;
+
+    console.log('route.params.tabBarVisible: ', route.params.tabBarVisible)
 
     return (
         <ScrollView
-            onScroll={(event: any) => onScroll(event)}
             style={styles.container}
+            onScroll={({ nativeEvent }) => {
+                if (isCloseToTop(nativeEvent)) {
+                    console.log('Im at the TOP!')
+                    navigation.setOptions({
+                        tabBarVisible: true,
+                    })
+                    route.params.setTabBarVisible(true);
+                } else {
+
+                    if (route.params.tabBarVisible) {
+                        navigation.setOptions({
+                            tabBarVisible: false,
+                        })
+                        route.params.setTabBarVisible(false);
+                    }
+
+                    console.log('layoutMeasurement: ', nativeEvent.layoutMeasurement)
+                    console.log('contentOffset: ', nativeEvent.contentOffset)
+                    console.log('contentSize: ', nativeEvent.contentSize)
+                    console.log('\n')
+                }
+            }}
+            scrollEventThrottle={400}
         >
+
             <View style={{
                 borderWidth: 1,
                 backgroundColor: 'pink',

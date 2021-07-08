@@ -27,6 +27,7 @@ const HomeNavigation: React.FC = ({ route, navigation }: any) => {
             <Stack.Screen
                 name="HomeScreen"
                 component={HomeScreen}
+                initialParams={{ setTabBarVisible: route.params.setTabBarVisible, tabBarVisible: route.params.tabBarVisible }}
             />
             <Stack.Screen
                 name="HomeSubScreen"

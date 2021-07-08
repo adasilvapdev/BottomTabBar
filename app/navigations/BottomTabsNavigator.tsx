@@ -146,7 +146,7 @@ const BottomTabsNavigator = () => {
             <Tab.Screen
                 name="HomeNavigation"
                 component={HomeNavigation}
-                initialParams={{ setTabBarVisible: setTabBarVisible }}
+                initialParams={{ setTabBarVisible: setTabBarVisible, tabBarVisible: tabBarVisible }}
                 options={{
                     tabBarAccessibilityLabel: 'Home',
                     unmountOnBlur: true,
