@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { StyleSheet, Text, View, Button, ScrollView, Animated, Dimensions } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View, Button, ScrollView, } from 'react-native';
 
 const isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
     const paddingToBottom = 20;
@@ -12,11 +12,6 @@ const isCloseToTop = ({ contentOffset }) => {
 };
 
 const HomeScreen = ({ route, navigation }: any) => {
-    const [index, setIndex] = useState(0);
-    const scrollY = useRef(new Animated.Value(0)).current;
-
-    console.log('route.params.tabBarVisible: ', route.params.tabBarVisible)
-
     return (
         <ScrollView
             style={styles.container}
