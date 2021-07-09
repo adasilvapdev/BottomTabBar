@@ -1,37 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, ScrollView, } from 'react-native';
-
-const isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
-    const paddingToBottom = 20;
-    return layoutMeasurement.height + contentOffset.y >=
-        contentSize.height - paddingToBottom;
-};
-
-const isCloseToTop = ({ contentOffset }) => {
-    return contentOffset.y === 0;
-};
+import { StyleSheet, Text, View, Button, } from 'react-native';
+import { CustomScrollView } from '../../components/organisms';
 
 const HomeScreen = ({ route, navigation }: any) => {
     return (
-        <ScrollView
-            style={styles.container}
-            onScroll={({ nativeEvent }) => {
-                if (isCloseToTop(nativeEvent)) {
-                    console.log('Im at the TOP!')
-                    navigation.setOptions({
-                        tabBarVisible: true,
-                    })
-                    route.params.setTabBarVisible(true);
-                } else {
-                    if (route.params.tabBarVisible) {
-                        navigation.setOptions({
-                            tabBarVisible: false,
-                        })
-                        route.params.setTabBarVisible(false);
-                    }
-                }
-            }}
-            scrollEventThrottle={400}
+        <CustomScrollView
+            route={route}
+            navigation={navigation}
         >
             <View style={{
                 borderWidth: 1,
@@ -85,14 +60,8 @@ const HomeScreen = ({ route, navigation }: any) => {
                     </Text>
                 </View>
             </View>
-        </ScrollView>
+        </CustomScrollView>
     )
 }
 
 export default HomeScreen
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    }
-})
