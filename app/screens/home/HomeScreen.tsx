@@ -22,24 +22,19 @@ const HomeScreen = ({ route, navigation }: any) => {
                         tabBarVisible: true,
                     })
                     route.params.setTabBarVisible(true);
+                    route.params.setAnimationType('flipInX');
                 } else {
-
                     if (route.params.tabBarVisible) {
                         navigation.setOptions({
                             tabBarVisible: false,
                         })
                         route.params.setTabBarVisible(false);
+                        route.params.setAnimationType('slideOutDown');
                     }
-
-                    console.log('layoutMeasurement: ', nativeEvent.layoutMeasurement)
-                    console.log('contentOffset: ', nativeEvent.contentOffset)
-                    console.log('contentSize: ', nativeEvent.contentSize)
-                    console.log('\n')
                 }
             }}
             scrollEventThrottle={400}
         >
-
             <View style={{
                 borderWidth: 1,
                 backgroundColor: 'pink',

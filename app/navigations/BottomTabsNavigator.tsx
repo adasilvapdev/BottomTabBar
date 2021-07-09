@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Svg, { Path, } from 'react-native-svg';
@@ -11,6 +11,7 @@ import { TaxiNavigation } from './sections/taxi'
 import { HomeIcon, TicketIcon, SearchIcon, ProfileIcon } from '../components/atoms/icons';
 import { THEME } from '../styles';
 import { COLORS } from '../styles/theme';
+import * as Animatable from 'react-native-animatable';
 
 const Tab = createBottomTabNavigator();
 
@@ -21,7 +22,16 @@ const TabBarCustomButton = ({
     accessibilityLabel,
     tabId,
     tabBarVisible,
+
+    animationType
 }: any) => {
+
+
+    console.log('animationType: ', animationType)
+
+    useEffect(() => {
+
+    }, [animationType])
 
     let isSelected = accessibilityState.selected
     if (isSelected) {   //* If button is selected, return the curvy floating button
@@ -38,12 +48,6 @@ const TabBarCustomButton = ({
                         position: "absolute",
                         top: 0,
                     }}>
-
-                        {/* <View style={{
-                        flex: 1,
-                        // marginRight: '50%'
-                    }}></View> */}
-
                         <Svg
                             width={75}
                             height={61}
@@ -60,15 +64,10 @@ const TabBarCustomButton = ({
                                 fillOpacity={0.9}
                             />
                         </Svg>
-
-                        {/* <View style={{
-                        flex: 1,
-                        // marginRight: '6%'
-                    }}></View> */}
                     </View>
 
                     <TouchableOpacity
-                        activeOpacity={0.9}
+                        // activeOpacity={0.9}
                         onPress={() => console.log('pressing')}
                         style={{
                             width: '100%',
@@ -77,16 +76,73 @@ const TabBarCustomButton = ({
                             alignItems: "center",
                         }}
                     >
-                        <LinearGradient colors={['#020250', '#FF00CF']}
-                            style={{
-                                top: -40,
-                                width: 50,
-                                height: 50,
-                                borderRadius: 25,
-                            }}
+                        <Animatable.View
+                            animation={animationType}
+                            duration={1000}
+                            // delay={100}
+
+                            direction={"normal"}
+                        // direction={"reverse"}
+                        // direction={"alternate"}
+                        // direction={"alternate-reverse"}
+
+                        // easing={"ease-in"}
+                        // easing={"ease-in-cubic"}
+                        // easing={"ease-in-out-expo"}
+                        // easing={"ease-in-quad"}
+                        // easing={"ease-in-quart"}
+                        // easing={"ease-in-out-quart"}
+                        // easing={"ease-in-sine"}
+                        // easing={"ease-in-out-sine"}
+
+
+
+
+                        // easing={"linear"}
+                        // easing={"ease"}
+                        // easing={"ease-out"}
+                        // easing={"ease-in-out"}
+                        // easing={"ease-out-cubic"}
+                        // easing={"ease-in-out-cubic"}
+                        // easing={"ease-in-circ"}
+                        // easing={"ease-out-circ"}
+                        // easing={"ease-in-out-circ"}
+                        // easing={"ease-in-expo"}
+                        // easing={"ease-out-expo"}
+                        // easing={"ease-out-quad"}
+                        // easing={"ease-in-out-quad"}
+                        // easing={"ease-out-quart"}
+                        // easing={"ease-in-quint"}
+                        // easing={"ease-out-quint"}
+                        // easing={"ease-out-sine"}
+                        // easing={"ease-in-back"}
+                        // easing={"ease-out-back"}
+                        // easing={"ease-in-out-back"}
+
+
+                        // transition={"opacity"}
+                        // transition={"rotate"}
+
+                        // onAnimationBegin={() => console.log('A function that is called when the animation has been started.')}
+                        // onAnimationEnd={() => console.log(`A function that is called when the animation has been completed successfully or cancelled. Function is called with an endState argument, refer to endState.finished to see if the animation completed or not.`)}
+                        // onTransitionBegin={() => console.log('A function that is called when the transition of a style has been started. The function is called with a property argument to differentiate between styles.')}
+                        // onTransitionEnd={() => console.log(`A function that is called when the transition of a style has been completed successfully or cancelled. The function is called with a property argument to differentiate between styles.`)}
+
+                        // useNativeDriver={false}
+                        // useNativeDriver={true}
+                        // isInteraction={}
                         >
-                            {children}
-                        </LinearGradient>
+                            <LinearGradient colors={['#020250', '#FF00CF']}
+                                style={{
+                                    top: -40,
+                                    width: 50,
+                                    height: 50,
+                                    borderRadius: 25,
+                                }}
+                            >
+                                {children}
+                            </LinearGradient>
+                        </Animatable.View>
                     </TouchableOpacity>
 
                     <Text style={[
@@ -126,6 +182,8 @@ const TabBarCustomButton = ({
 
 const BottomTabsNavigator = () => {
     const [tabBarVisible, setTabBarVisible] = useState(true)
+    const [animationType, setAnimationType] = useState("flipInX")
+
     return (
         <Tab.Navigator
             lazy={false}
@@ -146,7 +204,11 @@ const BottomTabsNavigator = () => {
             <Tab.Screen
                 name="HomeNavigation"
                 component={HomeNavigation}
-                initialParams={{ setTabBarVisible: setTabBarVisible, tabBarVisible: tabBarVisible }}
+                initialParams={{
+                    setTabBarVisible: setTabBarVisible,
+                    tabBarVisible: tabBarVisible,
+                    setAnimationType: setAnimationType,
+                }}
                 options={{
                     tabBarAccessibilityLabel: 'Home',
                     unmountOnBlur: true,
@@ -159,6 +221,7 @@ const BottomTabsNavigator = () => {
                         <TabBarCustomButton
                             tabId={0}
                             tabBarVisible={tabBarVisible}
+                            animationType={animationType}
                             {...props}
                         />
                     )
@@ -180,6 +243,7 @@ const BottomTabsNavigator = () => {
                         <TabBarCustomButton
                             tabId={1}
                             tabBarVisible={tabBarVisible}
+                            animationType={animationType}
                             {...props}
                         />
                     )
@@ -201,6 +265,7 @@ const BottomTabsNavigator = () => {
                         <TabBarCustomButton
                             tabId={2}
                             tabBarVisible={tabBarVisible}
+                            animationType={animationType}
                             {...props}
                         />
                     )
@@ -222,6 +287,7 @@ const BottomTabsNavigator = () => {
                         <TabBarCustomButton
                             tabId={3}
                             tabBarVisible={tabBarVisible}
+                            animationType={animationType}
                             {...props}
                         />
                     )
@@ -243,6 +309,7 @@ const BottomTabsNavigator = () => {
                         <TabBarCustomButton
                             tabId={4}
                             tabBarVisible={tabBarVisible}
+                            animationType={animationType}
                             {...props}
                         />
                     ),

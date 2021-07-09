@@ -5,17 +5,17 @@ import { HomeScreen, HomeSubScreen, HomeSubSubScreen } from '../../../screens/ho
 const HomeNavigation: React.FC = ({ route, navigation }: any) => {
     const Stack = createStackNavigator();
 
-    if (route.state && route.state.index > 0) {
-        navigation.setOptions({ //* If isn't the root route, then hide the bottom tab bar
-            tabBarVisible: false,
-        })
-        route.params.setTabBarVisible(false);
-    } else { //* Else, don't hide the bottom tab bar
-        navigation.setOptions({
-            tabBarVisible: true,
-        })
-        route.params.setTabBarVisible(true);
-    }
+    // if (route.state && route.state.index > 0) {
+    //     navigation.setOptions({ //* If isn't the root route, then hide the bottom tab bar
+    //         tabBarVisible: false,
+    //     })
+    //     route.params.setTabBarVisible(false);
+    // } else { //* Else, don't hide the bottom tab bar
+    //     navigation.setOptions({
+    //         tabBarVisible: true,
+    //     })
+    //     route.params.setTabBarVisible(true);
+    // }
 
     return (
         <Stack.Navigator
@@ -27,7 +27,11 @@ const HomeNavigation: React.FC = ({ route, navigation }: any) => {
             <Stack.Screen
                 name="HomeScreen"
                 component={HomeScreen}
-                initialParams={{ setTabBarVisible: route.params.setTabBarVisible, tabBarVisible: route.params.tabBarVisible }}
+                initialParams={{
+                    setTabBarVisible: route.params.setTabBarVisible,
+                    tabBarVisible: route.params.tabBarVisible,
+                    setAnimationType: route.params.setAnimationType,
+                }}
             />
             <Stack.Screen
                 name="HomeSubScreen"
