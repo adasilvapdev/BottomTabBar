@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TouchableOpacity, Text, Animated } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Svg, { Path, } from 'react-native-svg';
 import LinearGradient from 'react-native-linear-gradient';
@@ -48,7 +48,6 @@ const TabBarCustomButton = ({
                             viewBox="0 0 75 61"
                         >
                             <Path
-                                // d="M75.2 0v61H0V0c4.1 0 7.4 3.1 7.9 7.1C10 21.7 22.5 33 37.7 33c15.2 0 27.7-11.3 29.7-25.9.5-4 3.9-7.1 7.9-7.1h-.1z"
                                 d="M72.9 0v61H0V0c4.1 0 7.4 3.1 7.9 7.1C10 21.7 22.5 33 37.7 33c15.2 0 27.7-11.3 29.7-25.9.5-4 3.9-7.1 7.9-7.1h-.1z"
                                 fill={THEME.COLORS.WHITE}
                                 fillOpacity={0.9}
@@ -57,7 +56,6 @@ const TabBarCustomButton = ({
                     </View>
 
                     <TouchableOpacity
-                        // activeOpacity={0.9}
                         onPress={() => console.log('pressing')}
                         style={{
                             width: '100%',
@@ -110,7 +108,6 @@ const TabBarCustomButton = ({
                         borderBottomRightRadius: tabId === 4 ? 20 : 0
                     }}
                 >
-                    {/* {children} */}
                     <Animatable.View
                         animation={"pulse"}
                         duration={800}
