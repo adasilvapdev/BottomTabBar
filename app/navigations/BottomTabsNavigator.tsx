@@ -20,16 +20,7 @@ const BottomTabsNavigator = () => {
             lazy={false}
             tabBarOptions={{
                 showLabel: false,
-                style: {
-                    position: 'absolute',
-                    borderTopWidth: 0,
-                    backgroundColor: "transparent",
-                    elevation: 0, //* Just fot Android,
-                    left: 20,
-                    right: 20,
-                    height: 80,
-                    borderRadius: 15
-                }
+                style: styles.tabBarOptions
             }}
         >
             <Tab.Screen
@@ -41,7 +32,6 @@ const BottomTabsNavigator = () => {
                 }}
                 options={{
                     tabBarAccessibilityLabel: 'Home',
-                    unmountOnBlur: true,
                     tabBarIcon: ({ focused }) => (
                         <HomeIcon
                             color={focused ? THEME.COLORS.WHITE : THEME.COLORS.GRAY}
@@ -62,7 +52,6 @@ const BottomTabsNavigator = () => {
                 initialParams={{ setTabBarVisible: setTabBarVisible }}
                 options={{
                     tabBarAccessibilityLabel: 'Promos',
-                    unmountOnBlur: true,
                     tabBarIcon: ({ focused }) => (
                         <TicketIcon
                             color={focused ? THEME.COLORS.WHITE : THEME.COLORS.GRAY}
@@ -83,7 +72,6 @@ const BottomTabsNavigator = () => {
                 initialParams={{ setTabBarVisible: setTabBarVisible }}
                 options={{
                     tabBarAccessibilityLabel: 'Explorar',
-                    unmountOnBlur: true,
                     tabBarIcon: ({ focused }) => (
                         <SearchIcon
                             color={focused ? THEME.COLORS.WHITE : THEME.COLORS.GRAY}
@@ -104,7 +92,6 @@ const BottomTabsNavigator = () => {
                 initialParams={{ setTabBarVisible: setTabBarVisible }}
                 options={{
                     tabBarAccessibilityLabel: 'Ayuda',
-                    unmountOnBlur: true,
                     tabBarIcon: ({ focused }) => (
                         <SearchIcon
                             color={focused ? THEME.COLORS.WHITE : THEME.COLORS.GRAY}
@@ -125,7 +112,6 @@ const BottomTabsNavigator = () => {
                 initialParams={{ setTabBarVisible: setTabBarVisible }}
                 options={{
                     tabBarAccessibilityLabel: 'Taxi',
-                    unmountOnBlur: true,
                     tabBarIcon: ({ focused }) => (
                         <ProfileIcon
                             color={focused ? THEME.COLORS.WHITE : THEME.COLORS.GRAY}
@@ -146,25 +132,15 @@ const BottomTabsNavigator = () => {
 
 export default BottomTabsNavigator
 
-// const styles = StyleSheet.create({
-//     linearGradient: {
-//         flex: 1,
-//         paddingLeft: 15,
-//         paddingRight: 15,
-//         borderRadius: 5
-//     },
-//     buttonText: {
-//         fontSize: 18,
-//         fontFamily: 'Gill Sans',
-//         textAlign: 'center',
-//         margin: 10,
-//         color: '#ffffff',
-//         backgroundColor: 'transparent',
-//     },
-//     title: {
-//         justifyContent: "center",
-//         textAlign: "center",
-//         fontSize: 10,
-//         color: THEME.COLORS.GRAY
-//     }
-// })
+const styles = StyleSheet.create({
+    tabBarOptions: {
+        position: 'absolute',
+        borderTopWidth: 0,
+        backgroundColor: "transparent",
+        elevation: 0, //* Just fot Android,
+        left: 20,
+        right: 20,
+        height: 80,
+        borderRadius: 15
+    },
+})
