@@ -1,29 +1,22 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button, ScrollView } from 'react-native'
-import { useNavigation } from '@react-navigation/native';
+import { CustomScrollView } from '../../components/organisms';
 
-const FAQsScreen = () => {
-    const navigation = useNavigation()
+const FAQsScreen = ({ route, navigation }: any) => {
     return (
-        <ScrollView style={styles.container}>
-            <View style={{
-                borderWidth: 1,
-                backgroundColor: 'orange',
-                borderColor: 'orange',
-                width: 300,
-                alignSelf: "center",
-                paddingTop: '50%',
-                paddingLeft: '5%',
-                paddingRight: '5%',
-            }}>
-                <View style={{ flex: 1, alignItems: "center" }}>
+        <CustomScrollView
+            route={route}
+            navigation={navigation}
+        >
+            <View style={styles.container}>
+                <View style={styles.topView}>
                     <Text>FAQs Screen</Text>
                     <Button
                         title="Sub Screen"
                         onPress={() => navigation.navigate('FAQsSubScreen')}
                     />
                 </View>
-                <View style={{ flex: 1, marginTop: '15%', marginBottom: '50%' }}>
+                <View style={styles.loremIpsum}>
                     <Text>
                         What is Lorem Ipsum?
 
@@ -53,7 +46,7 @@ const FAQsScreen = () => {
                     </Text>
                 </View>
             </View>
-        </ScrollView>
+        </CustomScrollView>
     )
 }
 
@@ -61,7 +54,23 @@ export default FAQsScreen
 
 const styles = StyleSheet.create({
     container: {
+        borderWidth: 1,
+        backgroundColor: 'orange',
+        borderColor: 'orange',
+        width: 300,
+        alignSelf: "center",
+        paddingTop: '50%',
+        paddingLeft: '5%',
+        paddingRight: '5%',
+    },
+    topView: {
         flex: 1,
+        alignItems: "center"
+    },
+    loremIpsum: {
+        flex: 1,
+        marginTop: '15%',
+        marginBottom: '50%'
     }
 })
 
