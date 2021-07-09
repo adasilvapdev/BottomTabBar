@@ -8,17 +8,8 @@ const HomeScreen = ({ route, navigation }: any) => {
             route={route}
             navigation={navigation}
         >
-            <View style={{
-                borderWidth: 1,
-                backgroundColor: 'pink',
-                borderColor: 'pink',
-                width: 300,
-                alignSelf: "center",
-                paddingTop: '50%',
-                paddingLeft: '5%',
-                paddingRight: '5%',
-            }}>
-                <View style={{ flex: 1, alignItems: "center" }}>
+            <View style={styles.container}>
+                <View style={styles.topView}>
                     <Text>Home Screen</Text>
                     <Button
                         title="Sub Screen"
@@ -30,7 +21,7 @@ const HomeScreen = ({ route, navigation }: any) => {
                         onPress={() => navigation.navigate('HomeSubSubScreen')}
                     />
                 </View>
-                <View style={{ flex: 1, marginTop: '15%', marginBottom: '50%' }}>
+                <View style={styles.loremIpsum}>
                     <Text>
                         What is Lorem Ipsum?
 
@@ -65,3 +56,25 @@ const HomeScreen = ({ route, navigation }: any) => {
 }
 
 export default HomeScreen
+
+const styles = StyleSheet.create({
+    container: {
+        borderWidth: 1,
+        backgroundColor: 'pink',
+        borderColor: 'pink',
+        width: 300,
+        alignSelf: "center",
+        paddingTop: '50%',
+        paddingLeft: '5%',
+        paddingRight: '5%',
+    },
+    topView: {
+        flex: 1,
+        alignItems: "center"
+    },
+    loremIpsum: {
+        flex: 1,
+        marginTop: '15%',
+        marginBottom: '50%'
+    }
+})
