@@ -1,29 +1,22 @@
 import React from 'react'
-import { StyleSheet, Text, View, Button, ScrollView } from 'react-native'
-import { useNavigation } from '@react-navigation/native';
+import { StyleSheet, Text, View, Button } from 'react-native'
+import { CustomScrollView } from '../../components/organisms';
 
-const TaxiScreen = () => {
-    const navigation = useNavigation()
+const TaxiScreen = ({ route, navigation }: any) => {
     return (
-        <ScrollView style={styles.container}>
-            <View style={{
-                borderWidth: 1,
-                backgroundColor: 'lawngreen',
-                borderColor: 'lawngreen',
-                width: 300,
-                alignSelf: "center",
-                paddingTop: '50%',
-                paddingLeft: '5%',
-                paddingRight: '5%',
-            }}>
-                <View style={{ flex: 1, alignItems: "center" }}>
+        <CustomScrollView
+            route={route}
+            navigation={navigation}
+        >
+            <View style={styles.container}>
+                <View style={styles.topView}>
                     <Text>Taxi Screen</Text>
                     <Button
                         title="Sub Screen"
                         onPress={() => navigation.navigate('TaxiSubScreen')}
                     />
                 </View>
-                <View style={{ flex: 1, marginTop: '15%', marginBottom: '50%' }}>
+                <View style={styles.loremIpsum}>
                     <Text>
                         What is Lorem Ipsum?
 
@@ -53,7 +46,7 @@ const TaxiScreen = () => {
                     </Text>
                 </View>
             </View>
-        </ScrollView>
+        </CustomScrollView>
     )
 }
 
@@ -61,6 +54,22 @@ export default TaxiScreen
 
 const styles = StyleSheet.create({
     container: {
+        borderWidth: 1,
+        backgroundColor: 'lawngreen',
+        borderColor: 'lawngreen',
+        width: 300,
+        alignSelf: "center",
+        paddingTop: '50%',
+        paddingLeft: '5%',
+        paddingRight: '5%',
+    },
+    topView: {
         flex: 1,
+        alignItems: "center"
+    },
+    loremIpsum: {
+        flex: 1,
+        marginTop: '15%',
+        marginBottom: '50%'
     }
 })
