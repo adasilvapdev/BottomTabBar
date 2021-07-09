@@ -22,14 +22,12 @@ const HomeScreen = ({ route, navigation }: any) => {
                         tabBarVisible: true,
                     })
                     route.params.setTabBarVisible(true);
-                    route.params.setAnimationType('flipInX');
                 } else {
                     if (route.params.tabBarVisible) {
                         navigation.setOptions({
                             tabBarVisible: false,
                         })
                         route.params.setTabBarVisible(false);
-                        route.params.setAnimationType('slideOutDown');
                     }
                 }
             }}

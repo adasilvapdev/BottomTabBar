@@ -30,7 +30,6 @@ const HomeNavigation: React.FC = ({ route, navigation }: any) => {
                 initialParams={{
                     setTabBarVisible: route.params.setTabBarVisible,
                     tabBarVisible: route.params.tabBarVisible,
-                    setAnimationType: route.params.setAnimationType,
                 }}
             />
             <Stack.Screen
