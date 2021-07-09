@@ -1,31 +1,23 @@
 import React from 'react'
-import { StyleSheet, Text, View, Button, ScrollView } from 'react-native'
-import { useNavigation } from '@react-navigation/native';
+import { StyleSheet, Text, View, Button } from 'react-native'
+import { CustomScrollView } from '../../components/organisms';
 
-const ExploreScreen = () => {
-    const navigation = useNavigation()
-
+const ExploreScreen = ({ route, navigation }: any) => {
     return (
-        <ScrollView style={styles.container}>
-            <View style={{
-                borderWidth: 1,
-                backgroundColor: 'darkorchid',
-                borderColor: 'darkorchid',
-                width: 300,
-                alignSelf: "center",
-                paddingTop: '50%',
-                paddingLeft: '5%',
-                paddingRight: '5%',
-            }}>
-                <View style={{ flex: 1, alignItems: "center" }}>
-                    <Text style={{ color: 'white' }}>Explore Screen</Text>
+        <CustomScrollView
+            route={route}
+            navigation={navigation}
+        >
+            <View style={styles.container}>
+                <View style={styles.topView}>
+                    <Text style={styles.textStyle}>Explore Screen</Text>
                     <Button
                         title="Sub Screen"
                         onPress={() => navigation.navigate('ExploreSubScreen')}
                     />
                 </View>
-                <View style={{ flex: 1, marginTop: '15%', marginBottom: '50%' }}>
-                    <Text style={{ color: 'white' }}>
+                <View style={styles.loremIpsum}>
+                    <Text style={styles.textStyle}>
                         What is Lorem Ipsum?
 
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -54,7 +46,7 @@ const ExploreScreen = () => {
                     </Text>
                 </View>
             </View>
-        </ScrollView>
+        </CustomScrollView>
     )
 }
 
@@ -62,6 +54,25 @@ export default ExploreScreen
 
 const styles = StyleSheet.create({
     container: {
+        borderWidth: 1,
+        backgroundColor: 'darkorchid',
+        borderColor: 'darkorchid',
+        width: 300,
+        alignSelf: "center",
+        paddingTop: '50%',
+        paddingLeft: '5%',
+        paddingRight: '5%',
+    },
+    topView: {
         flex: 1,
+        alignItems: "center"
+    },
+    loremIpsum: {
+        flex: 1,
+        marginTop: '15%',
+        marginBottom: '50%'
+    },
+    textStyle: {
+        color: 'white'
     }
 })
