@@ -49,7 +49,10 @@ const BottomTabsNavigator = () => {
             <Tab.Screen
                 name="PromosNavigation"
                 component={PromosNavigation}
-                initialParams={{ setTabBarVisible: setTabBarVisible }}
+                initialParams={{
+                    setTabBarVisible: setTabBarVisible,
+                    tabBarVisible: tabBarVisible,
+                }}
                 options={{
                     tabBarAccessibilityLabel: 'Promos',
                     tabBarIcon: ({ focused }) => (
@@ -69,7 +72,10 @@ const BottomTabsNavigator = () => {
             <Tab.Screen
                 name="ExploreNavigation"
                 component={ExploreNavigation}
-                initialParams={{ setTabBarVisible: setTabBarVisible }}
+                initialParams={{
+                    setTabBarVisible: setTabBarVisible,
+                    tabBarVisible: tabBarVisible,
+                }}
                 options={{
                     tabBarAccessibilityLabel: 'Explorar',
                     tabBarIcon: ({ focused }) => (
@@ -89,7 +95,10 @@ const BottomTabsNavigator = () => {
             <Tab.Screen
                 name="FAQsNavigation"
                 component={FAQsNavigation}
-                initialParams={{ setTabBarVisible: setTabBarVisible }}
+                initialParams={{
+                    setTabBarVisible: setTabBarVisible,
+                    tabBarVisible: tabBarVisible,
+                }}
                 options={{
                     tabBarAccessibilityLabel: 'Ayuda',
                     tabBarIcon: ({ focused }) => (
@@ -109,7 +118,10 @@ const BottomTabsNavigator = () => {
             <Tab.Screen
                 name="TaxiNavigation"
                 component={TaxiNavigation}
-                initialParams={{ setTabBarVisible: setTabBarVisible }}
+                initialParams={{
+                    setTabBarVisible: setTabBarVisible,
+                    tabBarVisible: tabBarVisible,
+                }}
                 options={{
                     tabBarAccessibilityLabel: 'Taxi',
                     tabBarIcon: ({ focused }) => (

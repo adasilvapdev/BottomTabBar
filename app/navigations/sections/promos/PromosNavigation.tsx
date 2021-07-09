@@ -2,20 +2,8 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { PromosScreen, PromosSubScreen } from '../../../screens/promos'
 
-const PromosNavigation: React.FC = ({ route, navigation }: any) => {
+const PromosNavigation: React.FC = ({ route }: any) => {
     const Stack = createStackNavigator()
-
-    if (route.state && route.state.index > 0) {
-        navigation.setOptions({ //* If isn't the root route, then hide the bottom tab bar
-            tabBarVisible: false,
-        })
-        route.params.setTabBarVisible(false);
-    } else { //* Else, don't hide the bottom tab bar
-        navigation.setOptions({
-            tabBarVisible: true,
-        })
-        route.params.setTabBarVisible(true);
-    }
 
     return (
         <Stack.Navigator
@@ -27,6 +15,10 @@ const PromosNavigation: React.FC = ({ route, navigation }: any) => {
             <Stack.Screen
                 name="PromosScreen"
                 component={PromosScreen}
+                initialParams={{
+                    setTabBarVisible: route.params.setTabBarVisible,
+                    tabBarVisible: route.params.tabBarVisible,
+                }}
             />
             <Stack.Screen
                 name="PromosSubScreen"
